@@ -39,10 +39,10 @@
 `include "pipline_flush.sv"
 `include "registerfile.sv"
 
-module top(clock,reset,stall,flush,e1,e2,e3,e4,e5,e6,e7,e8);
-input logic clock,reset,stall,flush;
+module top(clock,reset,e1,e2,e3,e4,e5,e6,e7,e8);
+input logic clock,reset;
 output logic [63:0] e1,e2,e3,e4,e5,e6,e7,e8;
-
+logic stall,flush;
 //CU wires
 logic branch;
 logic memread;
@@ -52,7 +52,7 @@ logic ALUsrc;
 logic [1:0] ALUop;
 
 //regFile
-logic regwrite_memwb_out;
+//logic regwrite_memwb_out;
 logic [63:0] readdata1,readdata2;
 logic [63:0] r8,r19,r20,r26,r27;
 logic [63:0] write_data;
@@ -63,7 +63,7 @@ logic [63:0] pc_out;
 
 //adders
 logic [63:0] adderout1;
-logic [63:0] adderout1;
+logic [63:0] adderout2;
 
 //inst_mem wire
 logic [31:0] instruction;
@@ -148,11 +148,11 @@ IF_ID iff1(.address(pc_out),.clock(clock),.reset(reset),.ifid_write(stall),.flus
 //instruction_parser(instruction,opcode,rd,func3,rs1,rs2,func7);
 instruction_parser i2(.instruction(inst_ifid_out),.opcode(opcode),.rd(rd),.func3(funct3),.rs1(rs1),.rs2(rs2),.func7(funct7));
 //control_unit(opcode,stall,branch,mem_read,mem_write,mem_to_reg,reg_write,alu_src,alu_op)
-control_unit(.opcode(opcode),.stall(stall),.branch(branch),.mem_read(memread),.mem_write(memwrite),.mem_to_reg(memtoreg),.reg_write(regwrite),.alu_src(ALUsrc),.alu_op(ALUop));
+control_unit c1(.opcode(opcode),.stall(stall),.branch(branch),.mem_read(memread),.mem_write(memwrite),.mem_to_reg(memtoreg),.reg_write(regwrite),.alu_src(ALUsrc),.alu_op(ALUop));
 //data_extender(instruction,imm_data);
-data_extender d1(.instruction(inst_ifid_out),.imm_data(imm_data));
+data_extender d1(.instruction(inst_ifid_out[31:5]),.imm_data(imm_data));
 //registerfile(reg_write,rs1,rs2,rd,clock,reset,Write_data,Read_data1,Read_data2,r8,r19,r20,r26,r27);
-registerfile(.reg_write(memwb_regwrite),.rs1(rs1),.rs2(rs2),.rd(memwbrd),.clock(clock),.reset(reset),.Write_data(write_data),.Read_data1(readdata1),.Read_data2(readdata2),.r8(r8),.r19(r19),.r20(r20),.r26(r26),.r27(r27));
+registerfile r1(.reg_write(memwb_regwrite),.rs1(rs1),.rs2(rs2),.rd(memwbrd),.clock(clock),.reset(reset),.Write_data(write_data),.Read_data1(readdata1),.Read_data2(readdata2),.r8(r8),.r19(r19),.r20(r20),.r26(r26),.r27(r27));
 /*ID_EX(clock,reset,funct_4_in,address_in,read_data1_in,read_data2_in,imm_data_in,rs1_in,
 rs2_in,rd_in,branch_in,mem_read_in,mem_to_reg_in,mem_write_in,alu_src_in,reg_write_in,alu_op_in,flush,
 address,rs1,rs2,rd,imm_data,read_data1,read_data2,funct_4,branch,mem_read,mem_write,alu_src,
