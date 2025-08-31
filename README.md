@@ -52,5 +52,8 @@ Integrated BEQ branch logic
 Built complete 5-stage pipeline
 
 Implemented forwarding & hazard detection
+
+# Architecture 
+
  
 
