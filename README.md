@@ -1,6 +1,7 @@
 # RISC-V-Pipelined-Processor
 This repository contains my implementation of a RISC-V 5-stage pipelined processor, built step by step to support different instruction types and pipeline features..
-📌 Features
+
+# 📌 Features
 
 # 5-Stage Pipeline
 
