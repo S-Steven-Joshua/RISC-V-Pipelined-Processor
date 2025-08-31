@@ -54,6 +54,6 @@ Built complete 5-stage pipeline
 Implemented forwarding & hazard detection
 
 # Architecture 
-
+<img width="786" height="524" alt="Image" src="https://github.com/user-attachments/assets/1b34f4d4-bf8e-4023-a888-057a8230b1e4" />
  
 
