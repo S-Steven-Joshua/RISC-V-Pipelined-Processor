@@ -55,5 +55,18 @@ Forwarding Unit + Branch Unit
  ┃ ┣ reg_file.sv
  ┃ ┗ top_pipeline.sv
  ┣ README.md
+
+
+📖 Development Stages
+
+Single-cycle datapath for LW / SW
+
+Added R-Type instruction execution
+
+Integrated BEQ branch logic
+
+Built complete 5-stage pipeline
+
+Implemented forwarding & hazard detection
  
 
