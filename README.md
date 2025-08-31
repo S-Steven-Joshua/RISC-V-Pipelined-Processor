@@ -39,3 +39,21 @@ ALU (64-bit)
 Data Memory
 Pipeline Registers (IF/ID, ID/EX, EX/MEM, MEM/WB)
 Forwarding Unit + Branch Unit
+
+
+📂 RISC-V-Pipeline
+ ┣ 📂 src
+ ┃ ┣ alu.sv
+ ┃ ┣ branch_unit.sv
+ ┃ ┣ control_unit.sv
+ ┃ ┣ data_memory.sv
+ ┃ ┣ forwarding_unit.sv
+ ┃ ┣ hazard_unit.sv
+ ┃ ┣ immediate_generator.sv
+ ┃ ┣ instruction_memory.sv
+ ┃ ┣ pipeline_registers.sv
+ ┃ ┣ reg_file.sv
+ ┃ ┗ top_pipeline.sv
+ ┣ README.md
+ 
+
